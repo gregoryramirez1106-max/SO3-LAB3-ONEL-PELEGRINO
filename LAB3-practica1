@@ -1,0 +1,18 @@
+# --- PARTE 1: Configurar el tiempo de espera de GRUB a 20 segundos ---
+sudo nano /etc/default/grub
+# (En el archivo, asegúrate de cambiar GRUB_TIMEOUT=5 por GRUB_TIMEOUT=20, guarda con Ctrl+O y sal con Ctrl+X)
+
+# Actualizar la configuración de GRUB según tu distribución:
+sudo update-grub
+# O en sistemas RedHat/Fedora: sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
+# --- PARTE 2: Método de recuperación de contraseña de root ---
+# 1. Reinicia el equipo, entra al menú de GRUB, presiona 'e' sobre la primera opción.
+# 2. Añade "init=/bin/bash" al final de la línea que empieza por "linux".
+# 3. Presiona Ctrl + X para iniciar.
+# 4. Una vez dentro de la consola de emergencia, ejecuta los siguientes comandos:
+
+mount -o remount,rw /
+passwd root
+exec /sbin/reboot
